@@ -19,21 +19,26 @@
 // Create a card for each of the articles and add the card to the DOM.
 
 
-const url='https://lambda-times-backend.herokuapp.com/articles';
-fetch(url)
-.then (data=>{
-    return data.json()})
-
-.then(res =>{
-
-
-    console.log(res)
-
-     articleData = res.articles
-     console.log(articleData)
-
+// const url='https://lambda-times-backend.herokuapp.com/articles';
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+.then(resp =>{
+    console.log(resp)
+    resp.data.articles.bootstrap.forEach(element => {
+        document.querySelector('.cards-container').appendChild(createCard(element))
+    });
+    resp.data.articles.javascript.forEach(element => {
+        document.querySelector('.cards-container').appendChild(createCard(element))
+    });
+    resp.data.articles.jquery.forEach(element => {
+        document.querySelector('.cards-container').appendChild(createCard(element))
+    });
+    resp.data.articles.node.forEach(element => {
+        document.querySelector('.cards-container').appendChild(createCard(element))
+    });
+    resp.data.articles.technology.forEach(element => {
+        document.querySelector('.cards-container').appendChild(createCard(element))
+    });
 })
-
 
 
 
@@ -52,12 +57,14 @@ function createCard (data) {
           imgContain.appendChild(userImg);
           authDiv.appendChild(authSpan);
         //assign classes
-          cardDiv.classList.add('card')
-          cardHline.classList.add
-          
-        //content 
-          
-    
+          cardDiv.classList.add('card');
+          cardHline.classList.add('headline');
+          authDiv.classList.add('author');
+          imgContain.classList.add('img-container');
+         //content 
+          cardHline.textContent = data.headline;
+          userImg.src = data.authorPhoto;
+          authSpan.textContent = data.authorName;
     
     
     
