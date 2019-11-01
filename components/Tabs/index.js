@@ -20,7 +20,8 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
     ltTopics.forEach(element => {
         const parentDiv = document.querySelector('.topics');
         const tabDiv = document.createElement('div');
-        tabDiv.textContent = ` ${element}...`;
+        tabDiv.classList.add('tab');
+        tabDiv.textContent = element;
         parentDiv.appendChild(tabDiv);
 
     });
